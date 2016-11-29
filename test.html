@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta lang = "utf-8">
+    </head>
+
+    <body>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+	  
+	  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="#!" class="breadcrumb">First</a>
+        <a href="#!" class="breadcrumb">Second</a>
+        <a href="#!" class="breadcrumb">BMI Cal.</a>
+      </div>
+    </div>
+    </nav>
+    <br />
+      <p>
+        <input name="group1" type="radio" id="test1" checked />
+        <label for="test1">Male</label>
+      </p>
+      <p>
+        <input name="group1" type="radio" id="test2" />
+        <label for="test2">Female</label>
+      </p>
+      <p class="range-field">
+        Choose Your Height : <input type="range" id="height" min="50" max="300" />
+      </p>
+      <p class="range-field">
+        Choose Your Weight : <input type="range" id="weight" min="0" max="200" />
+      </p>
+      <button class="btn waves-effect waves-light" type="submit" name="action" onclick="javascript:f()">Submit
+          <i class="material-icons right">send</i>
+      </button>
+
+      <div class="row" style="display: none" id="C">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image" id="CI">
+              <img src="http://lookatmenet.altervista.org/gallery/albums/tom-cruise-e-come-il-vino-rosso-piu-invecchia-piu-e-buono/tom-cruise-tom-cruise-18576235-1280-960.jpg">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content" id="CP">
+              <p>y.</p>
+            </div>
+            <div class="card-action" id="CL">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+    </body>
+
+    <script>
+      function f(){
+        //var a = document.getElementById("test1").checked;
+        //var b = document.getElementById("test2").checked;
+        var h = document.getElementById("height").value;
+        var w = document.getElementById("weight").value;
+        var bmi = w /((h*0.01)*(h*0.01));
+        var upperW = 24*((h*0.01)*(h*0.01));
+        var lowerW = 18.5*((h*0.01)*(h*0.01));
+        //alert( h + w + bmi);
+        /*if(a){
+          alert('Male');
+        }
+        else{
+          alert('Female')
+        }*/
+        document.getElementById("C").style.display = "block";
+        if(bmi <= 18.5){
+          document.getElementById("CI").innerHTML = '<img src = "http://lookatmenet.altervista.org/gallery/albums/tom-cruise-e-come-il-vino-rosso-piu-invecchia-piu-e-buono/tom-cruise-tom-cruise-18576235-1280-960.jpg"  height="auto">  <span class="card-title">Fitness</span>';
+          document.getElementById("CP").innerHTML = "<p>BMI = " + bmi.toFixed(2) +" <br>過輕,你需要增加 " + (lowerW-w).toFixed(0) + " 公斤</p>";
+          document.getElementById("CL").innerHTML = "<a href='https://jsfiddle.net/nyoyc1ah/3/'>Read more...</a>";
+        }
+        else if(bmi <= 24){
+            document.getElementById("CI").innerHTML = '<img src = "http://lookatmenet.altervista.org/gallery/albums/tom-cruise-e-come-il-vino-rosso-piu-invecchia-piu-e-buono/tom-cruise-tom-cruise-18576235-1280-960.jpg"  height="auto">  <span class="card-title">Fitness</span>';
+            document.getElementById("CP").innerHTML = "<p>Keep your fit body</p>";
+            document.getElementById("CL").innerHTML = "<a href='https://jsfiddle.net/nyoyc1ah/3/'>Read more...</a>";
+        }
+        else if(bmi <= 27){
+            document.getElementById("CI").innerHTML = '<img src = "http://lookatmenet.altervista.org/gallery/albums/tom-cruise-e-come-il-vino-rosso-piu-invecchia-piu-e-buono/tom-cruise-tom-cruise-18576235-1280-960.jpg"  height="auto">  <span class="card-title">Fitness</span>';
+            document.getElementById("CP").innerHTML = "<p>BMI = " + bmi.toFixed(2) +" <br>過重,你需要減重 " + (w-upperW).toFixed(0) + " 公斤</p>";
+            document.getElementById("CL").innerHTML = "<a href='https://jsfiddle.net/nyoyc1ah/3/'>Read more...</a>";
+        }
+        else {
+            document.getElementById("CI").innerHTML = '<img src = "http://lookatmenet.altervista.org/gallery/albums/tom-cruise-e-come-il-vino-rosso-piu-invecchia-piu-e-buono/tom-cruise-tom-cruise-18576235-1280-960.jpg"  height="auto">  <span class="card-title">Fitness</span>';
+            document.getElementById("CP").innerHTML = "<p>BMI = " + bmi.toFixed(2) +" <br>肥胖,你需要減重 " + (w-upperW).toFixed(0) + " 公斤</p>";
+            document.getElementById("CL").innerHTML = "<a href='https://jsfiddle.net/nyoyc1ah/3/'>Read more...</a>";
+        }
+    
+      }
+
+    </script>
+  </html>
+  
+  

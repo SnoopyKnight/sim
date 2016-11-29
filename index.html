@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+    <main>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      
+      <script>
+        $(document).ready(function() {
+           $('select').material_select();
+           $('.parallax').parallax();
+         });
+        $('select').material_select('destroy');
+
+
+
+        function myFunction() {
+            //get user選取的章節
+            var x = document.getElementById("mySelect").value;
+            //document.getElementById("demo").innerHTML = x;
+            //var ranklist = [0,"風雪驚變 比武招親 江南七怪" ,222,33,44,555];
+
+            //ranklist[x].split(" ");
+            //document.getElementById("demo").innerHTML = ranklist[x].split(" ");
+            //var str = ranklist[x].split(" ");
+            //document.getElementById("demo").innerHTML = str[0] + "</br>" + str[1] + "</br>" + str[2];
+            document.getElementById("C").style.display = "block";
+            //document.getElementById("CI").innerHTML = '<img src = "http://lookatmenet.altervista.org/gallery/albums/tom-cruise-e-come-il-vino-rosso-piu-invecchia-piu-e-buono/tom-cruise-tom-cruise-18576235-1280-960.jpg"  height="auto">  <span class="card-title">' + str[0] + '<//span>';
+            //document.getElementById("CI").innerHTML = '<img src = "http://lookatmenet.altervista.org/gallery/albums/tom-cruise-e-come-il-vino-rosso-piu-invecchia-piu-e-buono/tom-cruise-tom-cruise-18576235-1280-960.jpg"  height="auto">  <span class="card-title">Fitness</span>';
+
+            var xmlhttp = new XMLHttpRequest();
+                var url = 'rank/'+ x +'.txt';
+                xmlhttp.onreadystatechange = function() {
+
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        var myArr = xmlhttp.responseText;
+                        myFunct(myArr);
+
+                        console.log("xmlhttp Request Asepted");
+                    }
+
+                }
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
+
+                function myFunct(arr) {
+                        var out = "";
+                        var i,j;
+                        var row = 0;
+                        var outt = "";
+
+                    for(i = 0; i < arr.length; i++) {
+                       // console.log( arr[1].data); change data to what every you have in  your file
+                        out +=  arr[i] ;
+                        //document.getElementById("demo1").innerHTML = out;               
+                    }
+                      var str = out.split("\r\n"); 
+                      var str1 = str[1].split(" ");
+                      var str11 = str1[1].split(".");
+
+                      var str2 = str[2].split(" ");
+                      var str21 = str2[1].split("."); 
+
+                      var str3 = str[3].split(" ");
+                      var str31 = str3[1].split(".");
+
+
+                      //document.getElementById("demo1").innerHTML = "相似度最高的前三回</br>" + str1[0]+ " " + str11[0] + "</br>" + str2[0]+ " " + str21[0] + "</br>" + str3[0]+ " " + str31[0] + "</br>" ;
+                        var list =[
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=12578&rnd=1469707580250", "tl":"第零回" ,"ct":"賞鳥、戲水、看夕陽","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/54/%E9%AB%98%E7%BE%8E%E6%BF%95%E5%9C%B0-%E9%AB%98%E7%BE%8E%E9%87%8E%E7%94%9F%E5%8B%95%E7%89%A9%E4%BF%9D%E8%AD%B7%E5%8D%80-"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=3981&rnd=1429172193740", "tl":"第一回 風雪驚變" ,"ct":"綠色的大甲溪","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/130/%E6%9D%B1%E8%B1%90%E8%87%AA%E8%A1%8C%E8%BB%8A%E7%B6%A0%E5%BB%8A"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=447&rnd=1421050429229", "tl":"第二回 江南七怪" ,"ct":"與自然科學親密接觸","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/418/%E5%9C%8B%E7%AB%8B%E8%87%AA%E7%84%B6%E7%A7%91%E5%AD%B8%E5%8D%9A%E7%89%A9%E9%A4%A8"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=12572", "tl":"第三回 大漠風沙" ,"ct":"高美濕地","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/54/%E9%AB%98%E7%BE%8E%E6%BF%95%E5%9C%B0-%E9%AB%98%E7%BE%8E%E9%87%8E%E7%94%9F%E5%8B%95%E7%89%A9%E4%BF%9D%E8%AD%B7%E5%8D%80-"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=1000&rnd=1429169697918", "tl":"第四回 黑風雙煞" ,"ct":"大甲鎮瀾宮","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/609/%E5%A4%A7%E7%94%B2%E9%8E%AE%E7%80%BE%E5%AE%AE"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=12523&rnd=1429171208740", "tl":"第五回 彎弓射雕" ,"ct":"旱溪親水式自行車道","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/785/%E6%97%B1%E6%BA%AA%E8%A6%AA%E6%B0%B4%E5%BC%8F%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=2648&rnd=1382779881619", "tl":"第六回 崖頂疑陣" ,"ct":"秋紅谷廣場二","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/818/%E7%A7%8B%E7%B4%85%E8%B0%B7%E5%BB%A3%E5%A0%B4"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=3111", "tl":"第七回 比武招親" ,"ct":"谷關溫泉水質小資訊","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/346/%E8%B0%B7%E9%97%9C%E6%BA%AB%E6%B3%89"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=2788&rnd=1382932012001", "tl":"第八回 各顯神通" ,"ct":"生男湯","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/346/%E8%B0%B7%E9%97%9C%E6%BA%AB%E6%B3%89"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=18283&rnd=1452679845487", "tl":"第九回 鐵槍破犁" ,"ct":"霧峰林家","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/935/%E5%9C%8B%E5%AE%9A%E5%8F%A4%E8%B9%9F%E9%9C%A7%E5%B3%B0%E6%9E%97%E5%AE%B6-%E5%AE%AE%E4%BF%9D%E7%AC%AC%E5%9C%92%E5%8D%80-"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=731&rnd=1418712092706", "tl":"第十回 冤家聚頭" ,"ct":"東豐自行車綠廊","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/130/%E6%9D%B1%E8%B1%90%E8%87%AA%E8%A1%8C%E8%BB%8A%E7%B6%A0%E5%BB%8A"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=20484&prefix=original_", "tl":"第十一回 長春服输" ,"ct":"台中國際花球節","lk":"http://travel.taichung.gov.tw/zh-tw/Event/ActivityDetail/843/2016%E8%87%BA%E4%B8%AD%E5%9C%8B%E9%9A%9B%E8%8A%B1%E6%AF%AF%E7%AF%80"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=3582", "tl":"第十二回 亢龍有悔" ,"ct":"草悟道O","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/786/%E8%8D%89%E6%82%9F%E9%81%93"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=3116&rnd=1382779910021", "tl":"第十三回 五湖廢人" ,"ct":"秋紅骨廣場三","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/818/%E7%A7%8B%E7%B4%85%E8%B0%B7%E5%BB%A3%E5%A0%B4"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=178&rnd=1382779490119", "tl":"第十四回 桃花島主" ,"ct":"秋紅骨廣場一","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/818/%E7%A7%8B%E7%B4%85%E8%B0%B7%E5%BB%A3%E5%A0%B4"},
+                                {"ig":"http://travel.taichung.gov.tw/content/images/content/traffic/Flight-pic-01.jpg", "tl":"第十五回 神龍擺尾" ,"ct":"臺中航空站","lk":"http://travel.taichung.gov.tw/zh-tw/Traffic/Flight"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=11165", "tl":"第十六回 九陽真經" ,"ct":"南瓜子","lk":"http://travel.taichung.gov.tw/zh-tw/Shop/Consume/4089/%E9%BA%BB%E5%A7%A5%E5%A7%A5%E6%89%8B%E5%B7%A5%E9%A4%85%E8%88%96"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=10414&rnd=1406858522020", "tl":"第十七回 雙手互搏" ,"ct":"漁樂虛擬釣場","lk":"http://travel.taichung.gov.tw/zh-tw/Shop/Consume/4016/%E5%AF%B6%E7%86%8A%E6%BC%81%E6%A8%82%E9%A4%A8Okuma-Fishing-Museum"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=10420&rnd=1406858990433", "tl":"第十八回 三道試題" ,"ct":"三隻魚","lk":"http://travel.taichung.gov.tw/zh-tw/Shop/Consume/4016/%E5%AF%B6%E7%86%8A%E6%BC%81%E6%A8%82%E9%A4%A8Okuma-Fishing-Museum"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=10410&rnd=1406858508667", "tl":"第十九回 洪濤群鯊" ,"ct":"看","lk":"http://travel.taichung.gov.tw/zh-tw/Shop/Consume/4016/%E5%AF%B6%E7%86%8A%E6%BC%81%E6%A8%82%E9%A4%A8Okuma-Fishing-Museum"},
+                                {"ig":"http://travel.taichung.gov.tw/content/images/content/experience/Culture-pic-02.jpg", "tl":"第二十回 竄改經文" ,"ct":"彩虹眷村","lk":"http://travel.taichung.gov.tw/zh-tw/Experience/Culture"},
+                                {"ig":"http://travel.taichung.gov.tw/content/images/content/experience/Culture-pic-03.jpg", "tl":"第二十一回 千鈞巨岩" ,"ct":"行草間，悟道理","lk":"http://travel.taichung.gov.tw/zh-tw/Experience/Culture"},
+                                {"ig":"http://travel.taichung.gov.tw/content/images/content/experience/Culture-pic-04.jpg", "tl":"第二十二回 騎鯊遨游" ,"ct":"圓滿戶外劇場","lk":"http://travel.taichung.gov.tw/zh-tw/Experience/Culture"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=3532", "tl":"第二十三回 大鬧禁宮" ,"ct":"植物園","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/418/%E5%9C%8B%E7%AB%8B%E8%87%AA%E7%84%B6%E7%A7%91%E5%AD%B8%E5%8D%9A%E7%89%A9%E9%A4%A8"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=7631&rnd=1395388400621", "tl":"第二十四回 密室療傷" ,"ct":"牛舌","lk":"http://travel.taichung.gov.tw/zh-tw/Tourist/Tour/55/-%E9%81%94%E4%BA%BA%E5%B8%B6%E8%B7%AF-%E5%A4%A7%E5%9D%91%E6%BF%81%E6%B0%B4%E5%B7%B7%E6%AB%BB%E8%8A%B1%E6%9E%97-%E5%A4%A7%E5%A2%A9%E5%95%86%E5%9C%88%E7%89%A7%E5%B3%B6%E7%87%92%E8%82%89"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=7589&rnd=1395384827465", "tl":"第二十五回 荒村野店" ,"ct":"大坑櫻花林小販","lk":"http://travel.taichung.gov.tw/zh-tw/Tourist/Tour/55/-%E9%81%94%E4%BA%BA%E5%B8%B6%E8%B7%AF-%E5%A4%A7%E5%9D%91%E6%BF%81%E6%B0%B4%E5%B7%B7%E6%AB%BB%E8%8A%B1%E6%9E%97-%E5%A4%A7%E5%A2%A9%E5%95%86%E5%9C%88%E7%89%A7%E5%B3%B6%E7%87%92%E8%82%89"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=9685&rnd=1398772523362", "tl":"第二十六回 新盟舊约" ,"ct":"鄭成功","lk":"http://travel.taichung.gov.tw/zh-tw/Tourist/Tour/80/-%E9%81%94%E4%BA%BA%E5%B8%B6%E8%B7%AF-%E7%94%9F%E6%85%8B%E4%B9%8B%E6%97%85-%E4%BE%86%E5%A4%A7%E7%94%B2%E9%90%B5%E5%B8%96%E5%B1%B1%E7%9C%8B%E9%84%AD%E6%88%90%E5%8A%9F-%E7%B5%95%E4%B8%8D%E8%83%BD%E9%8C%AF%E9%81%8E%E7%9A%84%E9%AB%98%E7%BE%8E%E6%BA%BC%E5%9C%B0"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=9688&rnd=1398772605651", "tl":"第二十七回 軒轅台前" ,"ct":"鄭成功腿下","lk":"http://travel.taichung.gov.tw/zh-tw/Tourist/Tour/80/-%E9%81%94%E4%BA%BA%E5%B8%B6%E8%B7%AF-%E7%94%9F%E6%85%8B%E4%B9%8B%E6%97%85-%E4%BE%86%E5%A4%A7%E7%94%B2%E9%90%B5%E5%B8%96%E5%B1%B1%E7%9C%8B%E9%84%AD%E6%88%90%E5%8A%9F-%E7%B5%95%E4%B8%8D%E8%83%BD%E9%8C%AF%E9%81%8E%E7%9A%84%E9%AB%98%E7%BE%8E%E6%BA%BC%E5%9C%B0"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=7582&rnd=1395384669724", "tl":"第二十八回 鐵掌峰頂" ,"ct":"櫻花林","lk":"http://travel.taichung.gov.tw/zh-tw/Tourist/Tour/55/-%E9%81%94%E4%BA%BA%E5%B8%B6%E8%B7%AF-%E5%A4%A7%E5%9D%91%E6%BF%81%E6%B0%B4%E5%B7%B7%E6%AB%BB%E8%8A%B1%E6%9E%97-%E5%A4%A7%E5%A2%A9%E5%95%86%E5%9C%88%E7%89%A7%E5%B3%B6%E7%87%92%E8%82%89"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=8294&rnd=1395748195285", "tl":"第二十九回 黑沼隱女" ,"ct":"花燈","lk":"http://travel.taichung.gov.tw/zh-tw/Tourist/Tour/60/-%E9%81%94%E4%BA%BA%E5%B8%B6%E8%B7%AF-2014-%E4%B8%AD%E8%87%BA%E7%81%A3%E5%85%83%E5%AE%B5%E7%87%88%E6%9C%83-%E5%8F%B2%E4%B8%8A%E6%9C%80%E8%8F%AF%E9%BA%97%E4%B8%BB%E7%87%88-%E5%A5%B3%E9%AB%98%E9%9F%B3Live%E9%A3%86%E5%94%B1-"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=8290&rnd=1395748147933", "tl":"第三十回 一燈大師" ,"ct":"花燈二","lk":"http://travel.taichung.gov.tw/zh-tw/Tourist/Tour/60/-%E9%81%94%E4%BA%BA%E5%B8%B6%E8%B7%AF-2014-%E4%B8%AD%E8%87%BA%E7%81%A3%E5%85%83%E5%AE%B5%E7%87%88%E6%9C%83-%E5%8F%B2%E4%B8%8A%E6%9C%80%E8%8F%AF%E9%BA%97%E4%B8%BB%E7%87%88-%E5%A5%B3%E9%AB%98%E9%9F%B3Live%E9%A3%86%E5%94%B1-"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=7630&rnd=1395388384860", "tl":"第三十一回 鴛鴦錦帕" ,"ct":"壽司","lk":"http://travel.taichung.gov.tw/zh-tw/Tourist/Tour/55/-%E9%81%94%E4%BA%BA%E5%B8%B6%E8%B7%AF-%E5%A4%A7%E5%9D%91%E6%BF%81%E6%B0%B4%E5%B7%B7%E6%AB%BB%E8%8A%B1%E6%9E%97-%E5%A4%A7%E5%A2%A9%E5%95%86%E5%9C%88%E7%89%A7%E5%B3%B6%E7%87%92%E8%82%89"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=15165&rnd=1438841893001", "tl":"第三十二回 湍江險灘" ,"ct":"梧棲漁港","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/10/%E6%A2%A7%E6%A3%B2%E6%B8%AF%E8%A7%80%E5%85%89%E6%BC%81%E5%B8%82"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=3105", "tl":"第三十三回 來日大難" ,"ct":"梧棲歷史背景","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/10/%E6%A2%A7%E6%A3%B2%E6%B8%AF%E8%A7%80%E5%85%89%E6%BC%81%E5%B8%82"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=278", "tl":"第三十四回 島上巨變" ,"ct":"石岡水壩","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/82/%E7%9F%B3%E5%B2%A1%E6%B0%B4%E5%A3%A9"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=12514&rnd=1421055212916", "tl":"第三十五回 鐵槍廟中" ,"ct":"忠烈祠","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/125/%E8%87%BA%E4%B8%AD%E5%B8%82%E5%BF%A0%E7%83%88%E7%A5%A0"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=277&rnd=1418090574009", "tl":"第三十六回 大軍西征" ,"ct":"石岡水壩二","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/82/%E7%9F%B3%E5%B2%A1%E6%B0%B4%E5%A3%A9"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=4365", "tl":"第三十七回 從天而降" ,"ct":"沙鹿之翼","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/825/%E6%B2%99%E9%B9%BF%E4%B9%8B%E7%BF%BC"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=18045", "tl":"第三十八回 錦囊密令" ,"ct":"黎明新村","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/1074/%E9%BB%8E%E6%98%8E%E6%96%B0%E6%9D%91"},
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=18037&rnd=1451483290764", "tl":"第三十九回 是非善惡" ,"ct":"郵筒","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/1074/%E9%BB%8E%E6%98%8E%E6%96%B0%E6%9D%91"},                                
+                                {"ig":"http://travel.taichung.gov.tw/Utility/DisplayImage?id=12313&rnd=1417759226622", "tl":"第四十回 華山論劍" ,"ct":"植物園","lk":"http://travel.taichung.gov.tw/zh-tw/Attractions/Intro/831/%E5%A4%A9%E6%A2%AF%E6%AD%A5%E9%81%93"}
+
+                              ];
+
+
+                      document.getElementById("CI").innerHTML = '<img src = "' + list[x].ig + '"height="auto"> <span class="card-title">' + list[x].tl + '</span>';
+                      document.getElementById("CP").innerHTML = "<h5>相似度最高的前三回</h5>" + str1[0]+ " " + str11[0] + "</br>" + str2[0]+ " " + str21[0] + "</br>" + str3[0]+ " " + str31[0] + "</br>" ;
+                                         
+                }
+
+          }
+
+      </script>
+      
+      <nav>
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="#!" class="breadcrumb">金庸武俠小說 章節度相似計算</a>
+          <a href="#!" class="breadcrumb">射鵰英雄傳</a>
+        </div>
+      </div>
+      </nav>
+
+      <div class="parallax-container">
+          <style type="text/css" media="screen">
+            .parallax-container {
+                  height: "1000px";
+                }
+          </style>
+          <div class="parallax"><img src="images/01300000180919121792277285516.jpg"></div>
+          </div>
+          <div class="parallax-container">
+          <div class="section white">
+          <div class="row container"> 
+
+            <div class="input-field col s12">
+              <select id = "mySelect">
+              <option value="" disabled selected>Choose the Chapter to Check Its Simility.</option>
+              <option value="1">第一回 風雪驚變</option>
+              <option value="2">第二回 江南七怪</option>
+              <option value="3">第三回 大漠風沙</option>
+              <option value="4">第四回 黑風雙煞</option>
+              <option value="5">第五回 彎弓射雕</option>
+              <option value="6">第六回 崖頂疑陣</option>
+              <option value="7">第七回 比武招親</option>
+              <option value="8">第八回 各顯神通</option>
+              <option value="9">第九回 鐵槍破犁</option>
+              <option value="10">第十回 冤家聚頭</option>
+              <option value="11">第十一回 長春服输</option>
+              <option value="12">第十二回 亢龍有悔</option>
+              <option value="13">第十三回 五湖廢人</option>
+              <option value="14">第十四回 桃花島主</option>
+              <option value="15">第十五回 神龍擺尾</option>
+              <option value="16">第十六回 九陽真經</option>
+              <option value="17">第十七回 雙手互搏</option>
+              <option value="18">第十八回 三道試題</option>
+              <option value="19">第十九回 洪濤群鯊</option>
+              <option value="20">第二十回 竄改經文</option>
+              <option value="21">第二十一回 千鈞巨岩</option>
+              <option value="22">第二十二回 騎鯊遨游</option>
+              <option value="23">第二十三回 大鬧禁宮</option>
+              <option value="24">第二十四回 密室療傷</option>
+              <option value="25">第二十五回 荒村野店</option>
+              <option value="26">第二十六回 新盟舊约</option>
+              <option value="27">第二十七回 軒轅台前</option>
+              <option value="28">第二十八回 鐵掌峰頂</option>
+              <option value="29">第二十九回 黑沼隱女</option>
+              <option value="30">第三十回 一燈大師</option>
+              <option value="31">第三十一回 鴛鴦錦帕</option>
+              <option value="32">第三十二回 湍江險灘</option>
+              <option value="33">第三十三回 來日大難</option>
+              <option value="34">第三十四回 島上巨變</option>
+              <option value="35">第三十五回 鐵槍廟中</option>
+              <option value="36">第三十六回 大軍西征</option>
+              <option value="37">第三十七回 從天而降</option>
+              <option value="38">第三十八回 錦囊密令</option>
+              <option value="39">第三十九回 是非善惡</option>
+              <option value="40">第四十回 黑風雙煞</option>
+            
+              </select>
+              <button class="btn waves-effect waves-light" type="submit" name="action" onclick="myFunction()">Submit
+                <i class="material-icons right">send</i>
+              </button>
+              <br/><br/>
+            <div class="row" style="display: none" id="C">
+                    <div class="col s12 m9">
+                      <div class="card horizontal medium">
+                        <div class="card-image" id="CI">
+                          <img src="http://travel.taichung.gov.tw/Utility/DisplayImage?id=12578&rnd=1469707580250">
+                          <span class="card-title"></span>
+                        </div>
+                        <div class="card-stacked">
+                          <div class="card-content" id="CP">
+                            <p>I am a very simple card. I am good at containing small bits of information.
+                          I am convenient because I require little markup to use effectively.</p>
+                          </div>
+                          <div class="card-action" id="CL">
+                            <a href="#">This is a link</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>   
+          <!--<label>Materialize Select</label>-->
+          </div>
+      </div> 
+
+
+        <p id="demo"></p>
+        <p id="demo1"></p>
+        </div>  
+      </div>
+
+     </main>
+
+        <footer class="page-footer">
+          <style type="text/css">
+            body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+              }
+
+              main {
+                flex: 1 0 auto;
+              }
+          </style>
+            <div class="container">
+              <div class="row">
+                <div class="col l6 s12">
+                  <h5 class="white-text">Footer Content</h5>
+                  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Links</h5>
+                  <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="footer-copyright">
+              <div class="container">
+              © 2014 Copyright Text
+              <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+              </div>
+            </div>
+          </footer>
+   
+    </body>
+  </html>
+
